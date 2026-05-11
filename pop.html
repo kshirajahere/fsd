@@ -1,0 +1,67 @@
+/*design a web page that displays a centered message inside a styled box. Using JavaScript the text should 
+continously shrink and enlarge in size and when the size changes between minimum and maximum 
+limits the message and its color should toogle b etween"Department of Artificial Intelligence and Machine Learning"
+and "Ramaiah Institue of Technology"*/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Shrink & Enlarge Text </title>
+   <style>
+   body{
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   height:100vh;
+   margin:0;
+   background:#f5f5f5;
+   font-family:Arial,sans-serif;
+   }
+   /*Box model for the message */
+   #msg{
+   font-size:20px;
+   font-weight:bold;
+   font-family:Verdana,Geneva,Tahoma,sans-serif;
+   color:red;
+   /*BOX MODEL PROPERTIES*/
+   padding:20px;
+   border:3px solid #1976d2;
+   border-radius:10px;
+   background-color:#ffffff;
+   box-shadow:0 0 10px rgba(0,0,0,0.2);
+   margin:10px;
+   text-align:center;
+   }
+   </style>
+</head>
+<body>
+  <div id="msg">Department of Artificial Intelligence and Machine Learning</div>
+  <script>
+  let msg = document.getElementById("msg");
+  let size=20;  //cuurent font size
+  let growing = false; // flase=shrinking,true=growing
+  function animate(){
+  if(!growing){
+  //shrinking Department text(red)
+  size=-1;
+  if(size<=5){        //minimum size reached
+      growing=true;
+      msg.textContent="Ramaiah Institue of Technology";
+      msg.style.color="blue";  //color for RIT
+      }
+    }else{
+  //enlarging RIT
+  size+=1;
+  if(size>=50){          //maximum size reached
+     growing=false;
+     msg.textContent="Department of Artificial Intelligence and Machine Learning";
+     msg.style.color="red";  //back to red
+   }
+  }
+  msg.style.fontSize=size+"px";
+  }
+  //change size every 60 ms
+ setInterval(animate,60);
+</script>
+</body>
+</html>

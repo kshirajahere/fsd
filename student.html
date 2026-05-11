@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Styled Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .form-box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    label { font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<div class="form-box">
+  <h2>Registration Form</h2>
+  <form onsubmit="return validateForm();">
+    <label for="fname">First Name</label>
+    <input type="text" id="fname">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname">
+
+    <label for="address">Address</label>
+    <input type="text" id="address">
+
+    <label for="password">Password</label>
+    <input type="password" id="password">
+
+    <label for="email">E-mail</label>
+    <input type="text" id="email">
+
+    <label for="mobile">Mobile Number</label>
+    <input type="text" id="mobile">
+
+    <input type="submit" value="Register">
+  </form>
+</div>
+
+<script>
+function validateForm() {
+    // 1. Fetch values
+    var fname = document.getElementById("fname").value.trim();
+    var lname = document.getElementById("lname").value.trim();
+    var address = document.getElementById("address").value.trim();
+    var pwd = document.getElementById("password").value.trim(); // Fixed ID from 'pwd' to 'password'
+    var email = document.getElementById("email").value.trim();
+    var mobile = document.getElementById("mobile").value.trim();
+
+    // 2. First Name Validation (Alphabets only, length >= 6)
+    var nameRegex = /^[A-Za-z]+$/;
+    if (fname.length < 6 || !nameRegex.test(fname)) {
+        alert("First Name must contain only alphabets and be at least 6 characters long.");
+        return false;
+    }
+
+    // 3. Last Name & Address Validation (Should not be empty)
+    if (lname === "") {
+        alert("Last Name cannot be empty.");
+        return false;
+    }
+    if (address === "") {
+        alert("Address cannot be empty.");
+        return false;
+    }
+
+    // 4. Password Validation (Length >= 6)
+    if (pwd.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+    }
+
+    // 5. Email Validation (Standard pattern)
+    var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address (e.g., name@domain.com).");
+        return false;
+    }
+
+    // 6. Mobile Number Validation (10 digits only)
+    var mobileRegex = /^[0-9]{10}$/;
+    if (!mobileRegex.test(mobile)) {
+        alert("Mobile Number must contain exactly 10 digits.");
+        return false;
+    }
+
+    alert("Registration Successful!");
+    return true;
+}
+</script>
+
+</body>
+</html>
