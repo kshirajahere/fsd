@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Star Rating System</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            font-family:Arial, sans-serif;
+        }
+        .container {
+            text-align:center;
+        }
+        .star {
+            font-size:50px;
+            color:gray;
+            cursor:pointer;
+        }
+        .active {
+            color:gold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Star Rating System</h2>
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+        <p id="result"></p>
+    </div>
+    <script>
+        const stars = document.querySelectorAll('.star');
+        const result = document.getElementById('result');
+
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                stars.forEach((s, i) => s.classList.toggle('active', i <= index));
+                result.textContent = `You Rated ${index + 1} Stars`;
+            });
+        });
+    </script>
+
+</body>
+</html>
